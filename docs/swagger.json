@@ -1,0 +1,678 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This api is for testing the swagger ui",
+    "version": "1.0.7",
+    "title": "Express API Example",
+    "contact": {
+      "email": "test@gmail.com"
+    }
+  },
+  "host": "0.0.0.0:3000",
+  "tags": [
+    {
+      "name": "auth",
+      "description": "Operations about user"
+    },
+    {
+      "name": "post",
+      "description": "Operations about auth"
+    },
+    {
+      "name": "health",
+      "description": "Operations about auth"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/auth/me": {
+      "patch": {
+        "tags": ["auth"],
+        "summary": "Update user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateMyUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserDTO"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["auth"],
+        "summary": "Delete user",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deleteUser",
+        "security": [{"BearerAuth": []}],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/auth/signUp": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "Register user",
+        "description": "This can only be done by any user.",
+        "operationId": "RegisterUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateUserDTO"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/auth/log-in": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "User login",
+        "description": "This can only be done by any user.",
+        "operationId": "LoginUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/auth/log-out": {
+      "post": {
+        "tags": ["auth"],
+        "summary": "User logout",
+        "description": "This can only be done by any user.",
+        "operationId": "LogoutUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/auth/list": {
+      "get": {
+        "tags": ["auth"],
+        "summary": "Users list",
+        "description": "This can only be done by any user.",
+        "operationId": "listOfUsers",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UserListResponse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/post/:id": {
+      "patch": {
+        "tags": ["post"],
+        "summary": "Update post",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "updateMyPost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdatePostDTO"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["post"],
+        "summary": "Delete post",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "deletePost",
+        "security": [{"BearerAuth": []}],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "parameters": [
+          {
+            "name": "username",
+            "in": "path",
+            "description": "The name that needs to be deleted",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid username supplied"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/post/list/:id": {
+      "get": {
+        "tags": ["post"],
+        "summary": "Post list",
+        "description": "This can only be done by any user.",
+        "operationId": "listOfPostsByUserID",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostListResponse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    },
+    "/post/create": {
+      "post": {
+        "tags": ["post"],
+        "summary": "Create Post",
+        "description": "This can only be done by the logged in user.",
+        "operationId": "CreatePost",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json",
+          "application/xml"
+        ],
+        "security": [{"BearerAuth": []}],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/PostCreateResponse"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/PrivateUserResponse"
+            }
+          },
+          "400": {
+            "description": "Invalid user supplied"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "User not found"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions": {
+    "BearerAuth": {
+      "type": "apiKey",
+      "in": "header",
+      "name": "Authorization"
+    }
+  },
+  "definitions": {
+    "UpdateUserDTO": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "description": "Updated name in the system",
+          "type": "string"
+        },
+        "email": {
+          "description": "Updated email in the system",
+          "type": "string"
+        },
+        "age": {
+          "description": "Age in years",
+          "type": "number"
+        }
+      }
+    },
+    "UpdatePostDTO": {
+      "type": "object",
+      "properties": {
+        "title": {
+          "description": "Updated name in the system",
+          "type": "string"
+        },
+        "description": {
+          "description": "Updated email in the system",
+          "type": "string"
+        },
+        "body": {
+          "description": "Age in years",
+          "type": "number"
+        }
+      }
+    },
+    "PrivateUserResponse": {
+      "type": "object",
+      "required": ["id", "name", "email", "isDeleted", "isVerified"],
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uuid",
+          "description": "The unique identifier for a user"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "age": {
+          "type": "number"
+        },
+        "isDeleted": {
+          "type": "boolean"
+        },
+        "isVerified": {
+          "type": "boolean"
+        }
+      }
+    },
+    "UserListResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+  "page": {
+    "type": "number"
+  },
+  "total": {
+    "type": "number"
+  },
+  "limit": {
+    "type": "number"
+  },
+  "sort": {
+    "type": "string"
+  },
+  "data": {
+    "type":"array",
+    "required": ["page", "total", "limit", "sort", "data"],
+    "properties":{
+          "id": {
+            "type": "string",
+            "format": "uuid",
+            "description": "The unique identifier for a user"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "age": {
+            "type": "number"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "posts":{
+            "type": "array"
+          },
+          "createdAt": {
+            "type": "string",
+            "required": ["page", "total", "limit", "sort", "data"],
+            "properties": {
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "id": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "user_id":{
+                "type": "string"
+              }
+            }
+          },
+          "updatedAt": {
+            "type": "string"
+          }
+    }
+  }
+      }
+    },
+    "PostCreateResponse": {
+      "type": "object",
+      "required": ["data"],
+      "properties": {
+      "page": {
+        "type": "number"
+      },
+      "pages": {
+        "type": "number"
+      },
+      "limit": {
+        "type": "number"
+      },
+      "sort": {
+        "type": "string"
+      },
+      "countItems": {
+        "type": "string"
+      },
+      "entities": {
+        "type":"array",
+        "required": ["page", "total", "limit", "sort", "data"],
+        "properties":{
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "The unique identifier for a user"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "user_id":{
+                "type": "string"
+              }
+
+        }
+    }
+  }
+      },
+    "PostListResponse": {
+      "type": "object",
+      "required": ["title", "description", "body"],
+      "properties": {
+              "id": {
+                "type": "string",
+                "format": "uuid",
+                "description": "The unique identifier for a user"
+              },
+              "createdAt": {
+                "type": "string"
+              },
+              "updatedAt": {
+                "type": "string"
+              },
+              "title": {
+                "type": "string"
+              },
+              "description": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "user_id":{
+                "type": "string"
+              }
+
+        }
+    }
+  }
+      }
+    }
+  }
+}
+
+
+
+
+
