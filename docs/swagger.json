@@ -108,7 +108,7 @@
       "post": {
         "tags": ["auth"],
         "summary": "Register user",
-        "description": "This can only be done by any user.",
+        "description": "This can be done by any user.",
         "operationId": "RegisterUser",
         "consumes": [
           "application/json"
@@ -151,7 +151,7 @@
       "post": {
         "tags": ["auth"],
         "summary": "User login",
-        "description": "This can only be done by any user.",
+        "description": "This can be done by any user.",
         "operationId": "LoginUser",
         "consumes": [
           "application/json"
@@ -194,7 +194,7 @@
       "post": {
         "tags": ["auth"],
         "summary": "User logout",
-        "description": "This can only be done by any user.",
+        "description": "This can only be done by the logged in user.",
         "operationId": "LogoutUser",
         "consumes": [
           "application/json"
@@ -237,7 +237,7 @@
       "get": {
         "tags": ["auth"],
         "summary": "Users list",
-        "description": "This can only be done by any user.",
+        "description": "This can only be done by the logged in user. Includes search and filter.",
         "operationId": "listOfUsers",
         "consumes": [
           "application/json"
@@ -357,7 +357,7 @@
       "get": {
         "tags": ["post"],
         "summary": "Post list",
-        "description": "This can only be done by any user.",
+        "description": "This can be done by any user.",
         "operationId": "listOfPostsByUserID",
         "consumes": [
           "application/json"

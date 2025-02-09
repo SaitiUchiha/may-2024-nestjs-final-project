@@ -10,6 +10,17 @@
 [Nest](https://github.com/nestjs/nest) framework Final Backend-JS Project repository. 
 For correctly working project you will need PostgreSQL and Redis.
 
+Query Examples:
+
+Search for a User by ID or Email:
+GET /auth/list?idOrEmail=user@example.com;
+GET /auth/list?idOrEmail=123e4567-e89b-12d3-a456-426614174000;
+
+Filter Users with Pagination:
+GET /auth/list?firstName=John&page=2&limit=5;
+GET /auth/list?email=user@example.com&age=30;
+
+
 ## Project setup
 
 ```bash
